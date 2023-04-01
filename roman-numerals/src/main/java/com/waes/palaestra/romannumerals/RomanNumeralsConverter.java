@@ -4,7 +4,6 @@ public class RomanNumeralsConverter {
 
     public static String convert(int number) {
         if (number == 9) return "IX";
-        if (number == 4) return "IV";
 
         var result = new StringBuilder();
 
@@ -16,6 +15,11 @@ public class RomanNumeralsConverter {
         if (number >= 5) {
             result.append("V");
             number-=5;
+        }
+
+        if (number == 4) {
+            result.append("IV");
+            number-=4;
         }
 
         while (number >= 1) {
