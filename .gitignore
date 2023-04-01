@@ -1,0 +1,9 @@
+# Idea
+.idea
+
+# Maven
+**/target/**/*
+
+# Compiled class file
+*.class
+
