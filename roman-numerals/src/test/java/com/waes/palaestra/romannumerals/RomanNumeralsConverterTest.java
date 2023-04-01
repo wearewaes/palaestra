@@ -29,29 +29,4 @@ class RomanNumeralsConverterTest {
     void shouldConvertCorrectlyWithSymbolV(int numberToTest, String expectedRoman) {
         assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
     }
-
-    @Test
-    void given4expectsIV() {
-        assertEquals("IV", RomanNumeralsConverter.convert(4));
-    }
-
-    @Test
-    void given5expectsV() {
-        assertEquals("V", RomanNumeralsConverter.convert(5));
-    }
-
-    @Test
-    void given6expectsVI() {
-        assertEquals("VI", RomanNumeralsConverter.convert(6));
-    }
-
-    @Test
-    void given7expectsVII() {
-        assertEquals("VII", RomanNumeralsConverter.convert(7));
-    }
-
-    @Test
-    void given8expectsVIII() {
-        assertEquals("VIII", RomanNumeralsConverter.convert(8));
-    }
 }
