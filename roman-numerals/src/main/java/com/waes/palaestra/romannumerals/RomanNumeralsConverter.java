@@ -6,10 +6,14 @@ public class RomanNumeralsConverter {
         if (number == 8) return "VIII";
         if (number == 7) return "VII";
         if (number == 6) return "VI";
-        if (number == 5) return "V";
         if (number == 4) return "IV";
 
         var result = new StringBuilder();
+
+        if (number == 5) {
+            result.append("V");
+            number-=5;
+        }
 
         while (number >= 1) {
             result.append("I");
