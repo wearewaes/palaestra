@@ -86,4 +86,17 @@ class RomanNumeralsConverterTest {
     void shouldConvertCorrectlyWithSymbolD(int numberToTest, String expectedRoman) {
         assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+        "903, CMIII",
+        "1000, M",
+        "2604, MMDCIV",
+        "2701, MMDCCI",
+        "3855, MMMDCCCLV",
+        "4000, MMMM",
+    })
+    void shouldConvertCorrectlyWithSymbolM(int numberToTest, String expectedRoman) {
+        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+    }
 }
