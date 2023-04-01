@@ -3,13 +3,16 @@ package com.waes.palaestra.romannumerals;
 public class RomanNumeralsConverter {
 
     public static String convert(int number) {
-        if (number == 9) return "IX";
-
         var result = new StringBuilder();
 
         if (number >= 10) {
             result.append("X");
             number-=10;
+        }
+
+        if (number == 9) {
+            result.append("IX");
+            number-=9;
         }
 
         if (number >= 5) {

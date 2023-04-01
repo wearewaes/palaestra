@@ -42,6 +42,7 @@ class RomanNumeralsConverterTest {
         "16, XVI",
         "17, XVII",
         "18, XVIII",
+        "19, XIX",
     })
     void shouldConvertCorrectlyWithSymbolX(int numberToTest, String expectedRoman) {
         assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
