@@ -16,29 +16,14 @@ public class RomanNumeralsConverter {
     public static String convert(int number) {
         var result = new StringBuilder();
 
-        while (number >= 10) {
-            result.append(SYMBOLS.get(10));
-            number-=10;
-        }
+        for (var entry : SYMBOLS.entrySet()) {
+            var weight = entry.getKey();
+            var letter = entry.getValue();
 
-        while (number >= 9) {
-            result.append(SYMBOLS.get(9));
-            number-=9;
-        }
-
-        while (number >= 5) {
-            result.append(SYMBOLS.get(5));
-            number-=5;
-        }
-
-        while (number >= 4) {
-            result.append(SYMBOLS.get(4));
-            number-=4;
-        }
-
-        while (number >= 1) {
-            result.append(SYMBOLS.get(1));
-            number-=1;
+            while (number >= weight) {
+                result.append(letter);
+                number-=weight;
+            }
         }
 
         return result.toString();
