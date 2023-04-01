@@ -21,17 +21,17 @@ public class RomanNumeralsConverter {
             number-=10;
         }
 
-        if (number == 9) {
+        while (number >= 9) {
             result.append(SYMBOLS.get(9));
             number-=9;
         }
 
-        if (number >= 5) {
+        while (number >= 5) {
             result.append(SYMBOLS.get(5));
             number-=5;
         }
 
-        if (number == 4) {
+        while (number >= 4) {
             result.append(SYMBOLS.get(4));
             number-=4;
         }
