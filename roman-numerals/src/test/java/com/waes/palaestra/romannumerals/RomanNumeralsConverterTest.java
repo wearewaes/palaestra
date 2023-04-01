@@ -20,4 +20,9 @@ class RomanNumeralsConverterTest {
     void given3expectsIII() {
         assertEquals("III", RomanNumeralsConverter.convert(3));
     }
+
+    @Test
+    void given5expectsV() {
+        assertEquals("V", RomanNumeralsConverter.convert(5));
+    }
 }
