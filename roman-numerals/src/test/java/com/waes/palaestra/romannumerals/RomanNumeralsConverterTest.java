@@ -33,6 +33,14 @@ class RomanNumeralsConverterTest {
     @ParameterizedTest
     @CsvSource({
         "9, IX",
+        "10, X",
+        "11, XI",
+        "12, XII",
+        "13, XIII",
+        "15, XV",
+        "16, XVI",
+        "17, XVII",
+        "18, XVIII",
     })
     void shouldConvertCorrectlyWithSymbolX(int numberToTest, String expectedRoman) {
         assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));

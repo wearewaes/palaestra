@@ -8,6 +8,11 @@ public class RomanNumeralsConverter {
 
         var result = new StringBuilder();
 
+        if (number >= 10) {
+            result.append("X");
+            number-=10;
+        }
+
         if (number >= 5) {
             result.append("V");
             number-=5;
