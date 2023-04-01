@@ -50,6 +50,7 @@ class RomanNumeralsConverterTest {
 
     @ParameterizedTest
     @CsvSource({
+        "43, XLIII",
         "50, L",
         "54, LIV",
         "61, LXI",
