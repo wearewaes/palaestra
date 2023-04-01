@@ -25,4 +25,19 @@ class RomanNumeralsConverterTest {
     void given5expectsV() {
         assertEquals("V", RomanNumeralsConverter.convert(5));
     }
+
+    @Test
+    void given6expectsVI() {
+        assertEquals("VI", RomanNumeralsConverter.convert(6));
+    }
+
+    @Test
+    void given7expectsVII() {
+        assertEquals("VII", RomanNumeralsConverter.convert(7));
+    }
+
+    @Test
+    void given8expectsVIII() {
+        assertEquals("VIII", RomanNumeralsConverter.convert(8));
+    }
 }
