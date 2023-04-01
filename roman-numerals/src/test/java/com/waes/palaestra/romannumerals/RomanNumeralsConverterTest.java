@@ -47,4 +47,16 @@ class RomanNumeralsConverterTest {
     void shouldConvertCorrectlyWithSymbolX(int numberToTest, String expectedRoman) {
         assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+        "50, L",
+        "54, LIV",
+        "61, LXI",
+        "75, LXXV",
+        "89, LXXXIX",
+    })
+    void shouldConvertCorrectlyWithSymbolL(int numberToTest, String expectedRoman) {
+        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+    }
 }

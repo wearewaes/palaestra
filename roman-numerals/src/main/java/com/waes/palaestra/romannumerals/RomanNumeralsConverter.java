@@ -6,6 +6,7 @@ import java.util.Map;
 public class RomanNumeralsConverter {
 
     private static final Map<Integer, String> SYMBOLS = new LinkedHashMap<>() {{
+        put(50, "L");
         put(10, "X");
         put(9, "IX");
         put(5, "V");
