@@ -1,10 +1,11 @@
 package com.waes.palaestra.romannumerals;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RomanNumeralsConverterTest {
 
@@ -99,4 +100,12 @@ class RomanNumeralsConverterTest {
     void shouldConvertCorrectlyWithSymbolM(int numberToTest, String expectedRoman) {
         assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -10, -50, -1024, -1337})
+    void shouldThrowAnErrorWhenGivenZeroOrNegative(int numberToTest) {
+        assertThrows(IllegalArgumentException.class,
+            () -> RomanNumeralsConverter.convert(numberToTest));
+    }
+
 }

@@ -22,6 +22,8 @@ public class RomanNumeralsConverter {
     }};
 
     public static String convert(int number) {
+        if (number < 1) throw new IllegalArgumentException("Number should be at least 1");
+
         var result = new StringBuilder();
 
         for (var entry : SYMBOLS.entrySet()) {
