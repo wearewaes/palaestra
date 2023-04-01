@@ -5,7 +5,7 @@ public class RomanNumeralsConverter {
     public static String convert(int number) {
         var result = new StringBuilder();
 
-        if (number >= 10) {
+        while (number >= 10) {
             result.append("X");
             number-=10;
         }
