@@ -22,6 +22,11 @@ class RomanNumeralsConverterTest {
     }
 
     @Test
+    void given4expectsIV() {
+        assertEquals("IV", RomanNumeralsConverter.convert(4));
+    }
+
+    @Test
     void given5expectsV() {
         assertEquals("V", RomanNumeralsConverter.convert(5));
     }
