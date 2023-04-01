@@ -3,8 +3,20 @@ package com.waes.palaestra.romannumerals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class RomanNumeralsConverterTest {
+
+    @ParameterizedTest
+    @CsvSource({
+        "1, I",
+        "2, II",
+        "3, III",
+    })
+    void shouldConvertCorrectlyWithOnlySymbolI(int numberToTest, String expectedRoman) {
+        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+    }
 
     @Test
     void given1expectsI() {
