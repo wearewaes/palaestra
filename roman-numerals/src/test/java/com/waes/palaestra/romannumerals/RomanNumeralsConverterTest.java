@@ -18,6 +18,18 @@ class RomanNumeralsConverterTest {
         assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
     }
 
+    @ParameterizedTest
+    @CsvSource({
+        "4, IV",
+        "5, V",
+        "6, VI",
+        "7, VII",
+        "8, VIII",
+    })
+    void shouldConvertCorrectlyWithSymbolV(int numberToTest, String expectedRoman) {
+        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+    }
+
     @Test
     void given4expectsIV() {
         assertEquals("IV", RomanNumeralsConverter.convert(4));
