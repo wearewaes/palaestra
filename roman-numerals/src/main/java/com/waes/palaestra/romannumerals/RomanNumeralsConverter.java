@@ -3,6 +3,7 @@ package com.waes.palaestra.romannumerals;
 public class RomanNumeralsConverter {
 
     public static String convert(int number) {
+        if (number == 9) return "IX";
         if (number == 4) return "IV";
 
         var result = new StringBuilder();

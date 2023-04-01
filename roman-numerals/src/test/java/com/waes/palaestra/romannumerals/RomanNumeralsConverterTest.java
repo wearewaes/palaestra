@@ -29,4 +29,12 @@ class RomanNumeralsConverterTest {
     void shouldConvertCorrectlyWithSymbolV(int numberToTest, String expectedRoman) {
         assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
     }
+
+    @ParameterizedTest
+    @CsvSource({
+        "9, IX",
+    })
+    void shouldConvertCorrectlyWithSymbolX(int numberToTest, String expectedRoman) {
+        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+    }
 }
