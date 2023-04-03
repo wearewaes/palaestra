@@ -29,7 +29,7 @@ public class RomanNumeralsConverter {
         var result = new StringBuilder();
 
         for (var entry : SYMBOLS.entrySet()) {
-            var weight = entry.getKey();
+            var weight = entry.getValue().value;
             var letter = entry.getValue().name();
 
             while (number >= weight) {
