@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class FizzBuzzTest {
 
     @Test
-    void howShouldIStart() {
+    void givenSomethingShouldReturnWhatever() {
         assertEquals(1, 2);
     }
 }
