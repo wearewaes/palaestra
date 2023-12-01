@@ -3,7 +3,6 @@ package com.waes.palaestra.romannumerals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -109,18 +108,12 @@ class RomanNumeralsConverterTest {
         assertEquals("Zero or negative number are not allowed", exception.getMessage());
     }
 
-    @Test
-    void shouldExceptionWhenNumberIs5000() {
-        var exception = assertThrows(NumberTooLarge.class, () -> RomanNumeralsConverter.convert(5000));
+    @ParameterizedTest
+    @ValueSource(ints = {5000, 6543, 5001, 1231263})
+    void shouldExceptionWhenNumberIs5000OrHigher(int number) {
+        var exception = assertThrows(NumberTooLarge.class, () -> RomanNumeralsConverter.convert(number));
         assertEquals("Number is too large", exception.getMessage());
     }
-
-    @Test
-    void shouldExceptionWhenNumberIsBiggerThan5000() {
-        var exception = assertThrows(NumberTooLarge.class, () -> RomanNumeralsConverter.convert(6543));
-        assertEquals("Number is too large", exception.getMessage());
-    }
-
 
     //TODO Make Symbols enum have unique symbols only and no combinations work around
     //TODO Refactor code into "functional-like" style
