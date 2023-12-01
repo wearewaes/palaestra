@@ -24,7 +24,14 @@ public class RomanNumeralsConverter {
         }
     }
 
-    public static String convert(int cardinalNumber) {
+    public static RomanNumeral convert(int cardinalNumber) {
+        if (cardinalNumber <= 0) {
+            throw new NumberTooLow();
+        }
+        if (cardinalNumber >= 5000) {
+            throw new NumberTooLarge();
+        }
+
         var result = new StringBuilder();
         for (var symbol:Symbols.values()) {
             while (cardinalNumber >= symbol.weight) {
@@ -32,6 +39,6 @@ public class RomanNumeralsConverter {
                 cardinalNumber -= symbol.weight;
             }
         }
-        return result.toString();
+        return new RomanNumeral(result.toString());
     }
 }

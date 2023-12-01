@@ -1,9 +1,12 @@
 package com.waes.palaestra.romannumerals;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class RomanNumeralsConverterTest {
 
@@ -14,7 +17,7 @@ class RomanNumeralsConverterTest {
         "3, III",
     })
     void shouldConvertCorrectlyWithOnlySymbolI(int numberToTest, String expectedRoman) {
-        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
     @ParameterizedTest
@@ -26,7 +29,7 @@ class RomanNumeralsConverterTest {
         "8, VIII",
     })
     void shouldConvertCorrectlyWithSymbolV(int numberToTest, String expectedRoman) {
-        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
     @ParameterizedTest
@@ -44,7 +47,7 @@ class RomanNumeralsConverterTest {
         "39, XXXIX",
     })
     void shouldConvertCorrectlyWithSymbolX(int numberToTest, String expectedRoman) {
-        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
     @ParameterizedTest
@@ -57,7 +60,7 @@ class RomanNumeralsConverterTest {
         "89, LXXXIX",
     })
     void shouldConvertCorrectlyWithSymbolL(int numberToTest, String expectedRoman) {
-        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
     @ParameterizedTest
@@ -70,7 +73,7 @@ class RomanNumeralsConverterTest {
         "399, CCCXCIX",
     })
     void shouldConvertCorrectlyWithSymbolC(int numberToTest, String expectedRoman) {
-        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
     @ParameterizedTest
@@ -83,7 +86,7 @@ class RomanNumeralsConverterTest {
         "899, DCCCXCIX",
     })
     void shouldConvertCorrectlyWithSymbolD(int numberToTest, String expectedRoman) {
-        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
     @ParameterizedTest
@@ -96,13 +99,29 @@ class RomanNumeralsConverterTest {
         "4000, MMMM",
     })
     void shouldConvertCorrectlyWithSymbolM(int numberToTest, String expectedRoman) {
-        assertEquals(expectedRoman, RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
-    //TODO Handle Zero
-    //TODO Handle Negative Numbers
-    //TODO Handle Numbers from 5000 and forward
-    //TODO Refactor Primitive Obsession
+    @ParameterizedTest
+    @ValueSource(ints = {0, -1, -10, -35, -9876})
+    void shouldExceptionWhenNumberIsZeroOrLower(int number) {
+        var exception = assertThrows(NumberTooLow.class, () -> RomanNumeralsConverter.convert(number));
+        assertEquals("Zero or negative number are not allowed", exception.getMessage());
+    }
+
+    @Test
+    void shouldExceptionWhenNumberIs5000() {
+        var exception = assertThrows(NumberTooLarge.class, () -> RomanNumeralsConverter.convert(5000));
+        assertEquals("Number is too large", exception.getMessage());
+    }
+
+    @Test
+    void shouldExceptionWhenNumberIsBiggerThan5000() {
+        var exception = assertThrows(NumberTooLarge.class, () -> RomanNumeralsConverter.convert(6543));
+        assertEquals("Number is too large", exception.getMessage());
+    }
+
+
     //TODO Make Symbols enum have unique symbols only and no combinations work around
     //TODO Refactor code into "functional-like" style
     //TODO Return Result[Success|Failure] instead of throwing exceptions
