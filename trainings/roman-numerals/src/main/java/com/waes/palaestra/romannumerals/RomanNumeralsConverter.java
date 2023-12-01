@@ -24,7 +24,7 @@ public class RomanNumeralsConverter {
         }
     }
 
-    public static RomanNumeral convert(int cardinalNumber) {
+    public RomanNumeral convert(int cardinalNumber) {
         if (cardinalNumber <= 0) {
             throw new NumberTooLow();
         }

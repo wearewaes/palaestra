@@ -9,6 +9,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class RomanNumeralsConverterTest {
 
+    RomanNumeralsConverter converter = new RomanNumeralsConverter();
+
     @ParameterizedTest(name = "{index} => {0} should be {1}")
     @CsvSource({
         "1, I",
@@ -16,7 +18,7 @@ class RomanNumeralsConverterTest {
         "3, III",
     })
     void shouldConvertCorrectlyWithOnlySymbolI(int numberToTest, String expectedRoman) {
-        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), converter.convert(numberToTest));
     }
 
     @ParameterizedTest(name = "{index} => {0} should be {1}")
@@ -28,7 +30,7 @@ class RomanNumeralsConverterTest {
         "8, VIII",
     })
     void shouldConvertCorrectlyWithSymbolV(int numberToTest, String expectedRoman) {
-        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), converter.convert(numberToTest));
     }
 
     @ParameterizedTest(name = "{index} => {0} should be {1}")
@@ -46,7 +48,7 @@ class RomanNumeralsConverterTest {
         "39, XXXIX",
     })
     void shouldConvertCorrectlyWithSymbolX(int numberToTest, String expectedRoman) {
-        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), converter.convert(numberToTest));
     }
 
     @ParameterizedTest(name = "{index} => {0} should be {1}")
@@ -59,7 +61,7 @@ class RomanNumeralsConverterTest {
         "89, LXXXIX",
     })
     void shouldConvertCorrectlyWithSymbolL(int numberToTest, String expectedRoman) {
-        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), converter.convert(numberToTest));
     }
 
     @ParameterizedTest(name = "{index} => {0} should be {1}")
@@ -72,7 +74,7 @@ class RomanNumeralsConverterTest {
         "399, CCCXCIX",
     })
     void shouldConvertCorrectlyWithSymbolC(int numberToTest, String expectedRoman) {
-        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), converter.convert(numberToTest));
     }
 
     @ParameterizedTest(name = "{index} => {0} should be {1}")
@@ -85,7 +87,7 @@ class RomanNumeralsConverterTest {
         "899, DCCCXCIX",
     })
     void shouldConvertCorrectlyWithSymbolD(int numberToTest, String expectedRoman) {
-        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), converter.convert(numberToTest));
     }
 
     @ParameterizedTest(name = "{index} => {0} should be {1}")
@@ -98,20 +100,20 @@ class RomanNumeralsConverterTest {
         "4000, MMMM",
     })
     void shouldConvertCorrectlyWithSymbolM(int numberToTest, String expectedRoman) {
-        assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
+        assertEquals(new RomanNumeral(expectedRoman), converter.convert(numberToTest));
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0, -1, -10, -35, -9876})
     void shouldExceptionWhenNumberIsZeroOrLower(int number) {
-        var exception = assertThrows(NumberTooLow.class, () -> RomanNumeralsConverter.convert(number));
+        var exception = assertThrows(NumberTooLow.class, () -> converter.convert(number));
         assertEquals("Zero or negative number are not allowed", exception.getMessage());
     }
 
     @ParameterizedTest
     @ValueSource(ints = {5000, 6543, 5001, 1231263})
     void shouldExceptionWhenNumberIs5000OrHigher(int number) {
-        var exception = assertThrows(NumberTooHigh.class, () -> RomanNumeralsConverter.convert(number));
+        var exception = assertThrows(NumberTooHigh.class, () -> converter.convert(number));
         assertEquals("Number is too large", exception.getMessage());
     }
 
