@@ -111,7 +111,7 @@ class RomanNumeralsConverterTest {
     @ParameterizedTest
     @ValueSource(ints = {5000, 6543, 5001, 1231263})
     void shouldExceptionWhenNumberIs5000OrHigher(int number) {
-        var exception = assertThrows(NumberTooLarge.class, () -> RomanNumeralsConverter.convert(number));
+        var exception = assertThrows(NumberTooHigh.class, () -> RomanNumeralsConverter.convert(number));
         assertEquals("Number is too large", exception.getMessage());
     }
 

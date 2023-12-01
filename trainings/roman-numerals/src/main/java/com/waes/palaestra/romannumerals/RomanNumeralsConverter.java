@@ -29,7 +29,7 @@ public class RomanNumeralsConverter {
             throw new NumberTooLow();
         }
         if (cardinalNumber >= 5000) {
-            throw new NumberTooLarge();
+            throw new NumberTooHigh();
         }
 
         var result = new StringBuilder();

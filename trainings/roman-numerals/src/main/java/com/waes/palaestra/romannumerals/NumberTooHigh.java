@@ -1,7 +1,7 @@
 package com.waes.palaestra.romannumerals;
 
-public class NumberTooLarge extends RuntimeException {
-    public NumberTooLarge() {
+public class NumberTooHigh extends RuntimeException {
+    public NumberTooHigh() {
         super("Number is too large");
     }
 }
