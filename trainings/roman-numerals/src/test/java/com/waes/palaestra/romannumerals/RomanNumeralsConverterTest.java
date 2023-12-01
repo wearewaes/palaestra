@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class RomanNumeralsConverterTest {
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} => {0} should be {1}")
     @CsvSource({
         "1, I",
         "2, II",
@@ -20,7 +20,7 @@ class RomanNumeralsConverterTest {
         assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} => {0} should be {1}")
     @CsvSource({
         "4, IV",
         "5, V",
@@ -32,7 +32,7 @@ class RomanNumeralsConverterTest {
         assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} => {0} should be {1}")
     @CsvSource({
         "9, IX",
         "10, X",
@@ -50,7 +50,7 @@ class RomanNumeralsConverterTest {
         assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} => {0} should be {1}")
     @CsvSource({
         "43, XLIII",
         "50, L",
@@ -63,7 +63,7 @@ class RomanNumeralsConverterTest {
         assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} => {0} should be {1}")
     @CsvSource({
         "93, XCIII",
         "100, C",
@@ -76,7 +76,7 @@ class RomanNumeralsConverterTest {
         assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} => {0} should be {1}")
     @CsvSource({
         "403, CDIII",
         "500, D",
@@ -89,7 +89,7 @@ class RomanNumeralsConverterTest {
         assertEquals(new RomanNumeral(expectedRoman), RomanNumeralsConverter.convert(numberToTest));
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} => {0} should be {1}")
     @CsvSource({
         "903, CMIII",
         "1000, M",
