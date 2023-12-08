@@ -1,5 +1,7 @@
 package com.waes.palaestra.romannumerals;
 
+import java.util.Arrays;
+
 public class RomanNumeralsConverter {
 
     public RomanNumeral convert(int cardinalNumber) {
@@ -10,13 +12,18 @@ public class RomanNumeralsConverter {
             throw new NumberTooHigh();
         }
 
-        var result = new StringBuilder();
-        for (var symbol: RomanSymbol.values()) {
-            while (cardinalNumber >= symbol.weight) {
-                result.append(symbol.name());
-                cardinalNumber -= symbol.weight;
-            }
+        var roman = Arrays.stream(RomanSymbol.values())
+            .reduce(new Pair(cardinalNumber, ""), this::accumulate, (a, b) -> a);
+
+        return new RomanNumeral(roman.roman);
+    }
+
+    record Pair(int cardinal, String roman) {}
+
+    private Pair accumulate(Pair acc, RomanSymbol symbol) {
+        if (acc.cardinal < symbol.weight) {
+            return acc;
         }
-        return new RomanNumeral(result.toString());
+        return accumulate(new Pair( acc.cardinal - symbol.weight, acc.roman + symbol.name()), symbol);
     }
 }

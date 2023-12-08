@@ -118,6 +118,5 @@ class RomanNumeralsConverterTest {
     }
 
     //TODO Make Symbols enum have unique symbols only and no combinations work around
-    //TODO Refactor code into "functional-like" style
     //TODO Return Result[Success|Failure] instead of throwing exceptions
 }
