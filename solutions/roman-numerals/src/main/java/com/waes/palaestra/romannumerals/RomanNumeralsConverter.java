@@ -1,28 +1,38 @@
 package com.waes.palaestra.romannumerals;
 
-import static com.waes.palaestra.romannumerals.Symbol.*;
-
-import java.util.List;
+import static java.util.Arrays.stream;
 
 public class RomanNumeralsConverter {
+    private static final int MIN = 1;
+    private static final int MAX = 4999;
 
-    private static final List<Symbol> SYMBOLS = List.of(
-        M, CM, D, CD, C, XC, L, XL, X, IX, V, IV, I
-    );
-
-    public static String convert(int number) {
-        if (number < 1) throw new IllegalArgumentException("Number should be at least 1");
-
-        var result = new StringBuilder();
-
-        for (var symbol : SYMBOLS) {
-            while (number >= symbol.value) {
-                result.append(symbol.name());
-                number-=symbol.value;
-            }
+    public RomanNumeral convert(int cardinal) {
+        if (cardinal < MIN) {
+            throw new NumberTooSmall();
+        }
+        if (cardinal > MAX) {
+            throw new NumberTooLarge();
         }
 
-        return result.toString();
+        return new RomanNumeral(
+            stream(RomanSymbol.values())
+                .reduce(new CardinalAndRoman(cardinal, ""), this::transform, (a, b) -> a)
+                .roman
+        );
     }
 
+    private record CardinalAndRoman(int cardinal, String roman) {}
+
+    private CardinalAndRoman transform(CardinalAndRoman accumulator, RomanSymbol symbol) {
+        if (accumulator.cardinal < symbol.weight) {
+            return accumulator;
+        }
+        return transform(
+            new CardinalAndRoman(
+                accumulator.cardinal - symbol.weight,
+                accumulator.roman + symbol.name()
+            ),
+            symbol
+        );
+    }
 }
